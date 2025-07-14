@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36127.28 d17.14
+VisualStudioVersion = 17.14.36127.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "McpJikkenApp", "McpJikkenApp\McpJikkenApp.csproj", "{2D4F5983-135C-4201-B3D0-F28C677DDDB6}"
 EndProject
@@ -9,20 +9,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "McpJikkenAppWindow", "McpJi
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedProject", "SharedProject\SharedProject.shproj", "{CB064D0C-2A6D-46AD-B96C-427D9B3FFE68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YushaParameterControlMcpServer", "YushaParameterControlMcpServer\YushaParameterControlMcpServer.csproj", "{38839D06-B9BF-4AA6-B39F-4A008641647A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2D4F5983-135C-4201-B3D0-F28C677DDDB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D4F5983-135C-4201-B3D0-F28C677DDDB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D4F5983-135C-4201-B3D0-F28C677DDDB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D4F5983-135C-4201-B3D0-F28C677DDDB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0CAE572-E713-4E35-95EF-238160F5932D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0CAE572-E713-4E35-95EF-238160F5932D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0CAE572-E713-4E35-95EF-238160F5932D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0CAE572-E713-4E35-95EF-238160F5932D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D4F5983-135C-4201-B3D0-F28C677DDDB6}.Debug|x64.ActiveCfg = Debug|x64
+		{2D4F5983-135C-4201-B3D0-F28C677DDDB6}.Debug|x64.Build.0 = Debug|x64
+		{2D4F5983-135C-4201-B3D0-F28C677DDDB6}.Release|x64.ActiveCfg = Release|x64
+		{2D4F5983-135C-4201-B3D0-F28C677DDDB6}.Release|x64.Build.0 = Release|x64
+		{E0CAE572-E713-4E35-95EF-238160F5932D}.Debug|x64.ActiveCfg = Debug|x64
+		{E0CAE572-E713-4E35-95EF-238160F5932D}.Debug|x64.Build.0 = Debug|x64
+		{E0CAE572-E713-4E35-95EF-238160F5932D}.Release|x64.ActiveCfg = Release|x64
+		{E0CAE572-E713-4E35-95EF-238160F5932D}.Release|x64.Build.0 = Release|x64
+		{38839D06-B9BF-4AA6-B39F-4A008641647A}.Debug|x64.ActiveCfg = Debug|x64
+		{38839D06-B9BF-4AA6-B39F-4A008641647A}.Debug|x64.Build.0 = Debug|x64
+		{38839D06-B9BF-4AA6-B39F-4A008641647A}.Release|x64.ActiveCfg = Release|x64
+		{38839D06-B9BF-4AA6-B39F-4A008641647A}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

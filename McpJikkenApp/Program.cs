@@ -8,6 +8,7 @@ namespace McpJikkenApp
     {
         static async Task Main(string[] args)
         {
+            Thread.Sleep(2000);
             // 受信データ：「Arm,100」「Leg,30」という感じで、スライダの種類と値を指定される。
             var kind = args[0];
             var val = args[1];
