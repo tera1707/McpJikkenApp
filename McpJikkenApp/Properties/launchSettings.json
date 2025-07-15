@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "McpJikkenApp": {
+      "commandName": "Project",
+      "commandLineArgs": "Get Arm 0"
+    }
+  }
+}

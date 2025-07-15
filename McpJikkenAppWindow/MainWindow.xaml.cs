@@ -32,24 +32,48 @@ namespace McpJikkenAppWindow
             {
                 while (true)
                 {
-                    string received = await pipe.WaitForStringAsync(pipeName);
-
-                    // 受信データ：「Arm,100」「Leg,30」という感じで、スライダの種類と値を指定される
-                    var rcv = received.Split(',');
-
-                    var kind = rcv[0];
-                    var val = rcv[1];
-
-                    await Dispatcher.InvokeAsync(() =>
+                    // 受信＋応答
+                    string received = await pipe.WaitForStringAndRespondAsync(pipeName, (req) =>
                     {
-                        if (kind == "Arm")
+                        var rcv = req.Split(',');
+                        if (rcv.Length < 3) return "ERROR";
+
+                        var getset = rcv[0];
+                        var kind = rcv[1];
+                        var val = rcv[2];
+
+                        string response = "";
+                        Dispatcher.Invoke(() =>
                         {
-                            ArmPower.Value = int.Parse(val);
-                        }
-                        else //(kind == Leg)
-                        {
-                            LegPower.Value = int.Parse(val);
-                        }
+                            if (getset == "Get")
+                            {
+                                if (kind == "Arm")
+                                {
+                                    response = $"{(int)ArmPower.Value}";
+                                }
+                                else if (kind == "Leg")
+                                {
+                                    response = $"{(int)LegPower.Value}";
+                                }
+                            }
+                            else // set
+                            {
+                                if (kind == "Arm")
+                                {
+                                    ArmPower.Value = int.Parse(val);
+                                    response = "0";
+                                }
+                                else if (kind == "Leg")
+                                {
+                                    LegPower.Value = int.Parse(val);
+                                    response = "0";
+                                }
+                            }
+                        });
+
+                        Thread.Sleep(1000);
+
+                        return response;
                     });
                 }
             });

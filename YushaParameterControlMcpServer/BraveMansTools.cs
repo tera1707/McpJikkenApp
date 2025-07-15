@@ -9,10 +9,12 @@ namespace YushaParameterControlMcpServer;
 [McpServerToolType]
 internal static class BraveMansTools
 {
-    static string BraveMansParameterAppPath = @"C:\Program Files\BraveMan\McpJikkenApp.exe";
+    static string BraveMansParameterAppPath = @"C:\git\McpJikkenApp\McpJikkenApp\bin\x64\Debug\net9.0\McpJikkenApp.exe";
+
+    // set
 
     [McpServerTool, Description("Set Blave man's Arm power value.")]
-    public static async Task<string> SetBlaveMansArmPower(
+    public static string SetBlaveMansArmPower(
         [Description("The Power Value for Arm.")] double armPower)
     {
         // 引数付きでexeを起動
@@ -20,7 +22,7 @@ internal static class BraveMansTools
         {
             FileName = BraveMansParameterAppPath,
             WorkingDirectory = Path.GetDirectoryName(BraveMansParameterAppPath),
-            Arguments = "Arm " + armPower.ToString(CultureInfo.InvariantCulture),
+            Arguments = "Set Arm " + armPower.ToString(CultureInfo.InvariantCulture),
             UseShellExecute = true
         };
         var p = Process.Start(psi);
@@ -31,14 +33,14 @@ internal static class BraveMansTools
     }
 
     [McpServerTool, Description("Set Blave man's Leg power value.")]
-    public static async Task<string> SetBlaveMansLegPower(
+    public static string SetBlaveMansLegPower(
         [Description("The Power Value for Leg.")] double armPower)
     {
         // 引数付きでexeを起動
         var psi = new ProcessStartInfo
         {
             FileName = BraveMansParameterAppPath,
-            Arguments = "Leg," + armPower.ToString(CultureInfo.InvariantCulture),
+            Arguments = "Set Leg " + armPower.ToString(CultureInfo.InvariantCulture),
             UseShellExecute = false
         };
         var p = Process.Start(psi);
@@ -49,32 +51,45 @@ internal static class BraveMansTools
     }
 
 
+    //get 
 
+    [McpServerTool, Description("Get Blave man's Arm power value.")]
+    public static string GetBlaveMansArmPower()
+    {
+        // 引数付きでexeを起動
+        var psi = new ProcessStartInfo
+        {
+            FileName = BraveMansParameterAppPath,
+            WorkingDirectory = Path.GetDirectoryName(BraveMansParameterAppPath),
+            Arguments = "Get Arm 0",
+            UseShellExecute = false // 標準出力不要なのでfalse
+        };
+        var p = Process.Start(psi);
+        p?.WaitForExit();
+        int exitCode = p?.ExitCode ?? -1;
+        
+        return $"""
+                    ArmPower: {exitCode}
+                    """;
+    }
 
-    //[McpServerTool, Description("Get weather alerts for a US state.")]
-    //public static async Task<string> SetAlerts(
-    //    HttpClient client,
-    //    [Description("The Power Value for Arm.")] double arm)
-    //{
-    //    using var jsonDocument = await client.ReadJsonDocumentAsync($"/alerts/active/area/{state}");
-    //    var jsonElement = jsonDocument.RootElement;
-    //    var alerts = jsonElement.GetProperty("features").EnumerateArray();
-
-    //    if (!alerts.Any())
-    //    {
-    //        return "No active alerts for this state.";
-    //    }
-
-    //    return string.Join("\n--\n", alerts.Select(alert =>
-    //    {
-    //        JsonElement properties = alert.GetProperty("properties");
-    //        return $"""
-    //                Event: {properties.GetProperty("zevent").GetString()}
-    //                Area: {properties.GetProperty("areaDesc").GetString()}
-    //                Severity: {properties.GetProperty("severity").GetString()}
-    //                Description: {properties.GetProperty("description").GetString()}
-    //                Instruction: {properties.GetProperty("instruction").GetString()}
-    //                """;
-    //    }));
-    //}
+    [McpServerTool, Description("Get Blave man's Leg power value.")]
+    public static string GetBlaveMansLegPower()
+    {
+        // 引数付きでexeを起動
+        var psi = new ProcessStartInfo
+        {
+            FileName = BraveMansParameterAppPath,
+            WorkingDirectory = Path.GetDirectoryName(BraveMansParameterAppPath),
+            Arguments = "Get Leg 0",
+            UseShellExecute = false // 標準出力不要なのでfalse
+        };
+        var p = Process.Start(psi);
+        p?.WaitForExit();
+        int exitCode = p?.ExitCode ?? -1;
+        
+        return $"""
+                    LegPower: {exitCode}
+                    """;
+    }
 }

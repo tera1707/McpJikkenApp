@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "C#: Attach to MCP Server",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}

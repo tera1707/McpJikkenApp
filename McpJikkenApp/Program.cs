@@ -6,35 +6,40 @@ namespace McpJikkenApp
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
-            Thread.Sleep(2000);
             // 受信データ：「Arm,100」「Leg,30」という感じで、スライダの種類と値を指定される。
-            var kind = args[0];
-            var val = args[1];
+            var getset = args[0];
+            var kind = args[1];
+            var val = args[2];
 
-            await Task.WhenAll(SendData(kind, val));
+            var ret = await SendData(getset, kind, val);
 
             Console.WriteLine("送信処理終了");
+
+            return ret;
         }
 
-        static async Task SendData(string kind, string val)
+        static async Task<int> SendData(string getset, string kind, string val)
         {
+            string response = "";
             const string pipeName = "MyPipeName";
             var pipe = new PipeServerClient();
 
-            // クライアント側: 5秒ごとに送信
+            // クライアント側: 送信後に応答を受信
             await Task.Run(async () =>
             {
-                //while (true)
-                {
-                    var sendData = kind + "," + val;
+                var sendData = getset + "," + kind + "," + val;
+                //await Task.Delay(1000);
+                response = await pipe.SendStringAsync(pipeName, sendData);
+                Console.WriteLine($"[Client] 送信: {sendData}");
 
-                    await Task.Delay(1000);
-                    await pipe.SendStringAsync(pipeName, sendData);
-                    Console.WriteLine($"[Client] 送信: {sendData}");
-                }
+                // 応答受信
+                //response = await pipe.ReceiveResponseAsync(pipeName);
+                Console.WriteLine($"[Client] 応答: {response}");
             });
+
+            return int.Parse(response);
         }
     }
 }
