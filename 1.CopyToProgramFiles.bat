@@ -7,6 +7,9 @@ if "%ERRORLEVEL%" neq "0" (
 )
 
 REM 管理者権限で実行したい処理 ここから
+
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat"
+
 cd %~dp0
 
 set TARGETDIR="C:\Program Files\McpJikken\"
@@ -14,6 +17,8 @@ set TARGETDIR="C:\Program Files\McpJikken\"
 IF NOT EXIST %TARGETDIR% (
     MKDIR %TARGETDIR%
 )
+
+dotnet build ".\McpJikkenApp.sln" 
 
 xcopy /Y /S /I ".\McpJikkenApp\bin\x64\Debug\net9.0\" %TARGETDIR%
 xcopy /Y /S /I ".\McpJikkenAppWindow\bin\x64\Debug\net9.0-windows\" %TARGETDIR%

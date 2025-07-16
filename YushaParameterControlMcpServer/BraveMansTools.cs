@@ -9,7 +9,7 @@ namespace YushaParameterControlMcpServer;
 [McpServerToolType]
 internal static class BraveMansTools
 {
-    static string BraveMansParameterAppPath = @"C:\git\McpJikkenApp\McpJikkenApp\bin\x64\Debug\net9.0\McpJikkenApp.exe";
+    static string BraveMansParameterAppPath = @"C:\Program Files\McpJikken\McpJikkenApp.exe";
 
     // set
 
