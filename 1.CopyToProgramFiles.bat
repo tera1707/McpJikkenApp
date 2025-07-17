@@ -18,6 +18,8 @@ IF NOT EXIST %TARGETDIR% (
     MKDIR %TARGETDIR%
 )
 
+taskkill -im YushaParameterControlMcpServer.exe -f
+
 dotnet build ".\McpJikkenApp.sln" 
 
 xcopy /Y /S /I ".\McpJikkenApp\bin\x64\Debug\net9.0\" %TARGETDIR%
