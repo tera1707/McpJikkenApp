@@ -15,8 +15,13 @@ class ReviewWithOurCodingRulesPrompts
     [McpServerPrompt(Name = "ReviewWithOurCppCodingRule")]
     [Description("私たちのC++コーディングルールを依頼するためのプロンプト")]
     public static string PromptForCppReviewRequest() => """
-        私たちのC++のためのコーディングルールを元に、コードをレビューしてください。
+        ReviewWithMyRulesのMCPサーバーを使って、私たちのC++のためのコーディングルールを元に、コードをレビューしてください。
         """;
-
+        
+    [McpServerPrompt(Name = "ReviewWithOurCsCodingRule")]
+    [Description("私たちのC#コーディングルールを依頼するためのプロンプト")]
+    public static string PromptForCsReviewRequest() => """
+        ReviewWithMyRulesのMCPサーバーを使って、私たちのC#のためのコーディングルールを元に、コードをレビューしてください。
+        """;
 }
 
