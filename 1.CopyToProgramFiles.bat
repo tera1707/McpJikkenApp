@@ -18,13 +18,11 @@ IF NOT EXIST %TARGETDIR% (
     MKDIR %TARGETDIR%
 )
 
-taskkill -im YushaParameterControlMcpServer.exe -f
+taskkill -im ReviewWithOurCodingRulesMcpServer.exe -f
 
 dotnet build ".\McpJikkenApp.sln" 
 
-xcopy /Y /S /I ".\McpJikkenApp\bin\x64\Debug\net9.0\" %TARGETDIR%
-xcopy /Y /S /I ".\McpJikkenAppWindow\bin\x64\Debug\net9.0-windows\" %TARGETDIR%
-xcopy /Y /S /I ".\YushaParameterControlMcpServer\bin\x64\Debug\net9.0\" %TARGETDIR%
+xcopy /Y /S /I ".\ReviewWithOurCodingRulesMcpServer\bin\x64\Debug\net9.0\" %TARGETDIR%
 
 pause
 REM 管理者権限で実行したい処理 ここまで
